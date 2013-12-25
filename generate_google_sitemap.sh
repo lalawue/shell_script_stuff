@@ -16,21 +16,37 @@ sitemap=$htmlpub/sitemap.txt
 
 # sitemap param for find
 suffix="*.html"
-time_zone="+08:00"
 loc="http://suchang.net/"
-lasmod="%TY-%Tm-%TdT%TH:%TM:00$time_zone"
+lasmodFMT="%FT%T%z"             # strftime format
 changefreq="weekly"
-priority=1.0
+priority=0.5
 
-# find format
-find_ptf_fmt=" <url>\n  <loc>$loc%P</loc>\n  <lastmod>$lasmod</lastmod>\n  <changefreq>$changefreq</changefreq>\n  <priority>$priority</priority>\n </url>\n"
-
-generate_goole_sitemap()
+# generate google sitemap
+generate_google_sitemap()
 {
-    # generate google sitemap
+    echo "generate google sitemap for " $loc " in $htmlpub" 
+
     echo '<?xml version="1.0" encoding="UTF-8"?>' > $sitemap
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> $sitemap
-    find $htmlpub -name $suffix -printf "$find_ptf_fmt" >> $sitemap
+
+    for file in $(find $htmlpub -name "$suffix" -type f -print)
+    do
+        del=$((${#htmlpub} + 2))
+        f=$(echo $file | cut -c$del-)
+
+        if [ $(basename $file) == "index.html" ]; then
+            pri=1.0
+        else
+            pri=$priority
+        fi
+
+        echo "<url>" >> $sitemap
+        echo "<loc>"$loc$f"</loc>" >> $sitemap
+        echo "<lasmod>"$(stat -f "%Sm" -t $lasmodFMT $file)"</lastmod>" >> $sitemap
+        echo "<changefreq>"$changefreq"</changefreq>" >> $sitemap
+        echo "<priority>"$pri"</priority>" >> $sitemap
+        echo "</url>" >> $sitemap
+    done
     echo '</urlset>' >> $sitemap
 
     # zip it
@@ -38,4 +54,4 @@ generate_goole_sitemap()
     gzip $sitemap
 }
 
-generate_goole_sitemap
+generate_google_sitemap
