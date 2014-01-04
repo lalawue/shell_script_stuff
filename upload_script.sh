@@ -33,7 +33,7 @@
 # 1. Local settings
 #    publish_dir holding your ftp files, normal file under this 
 #    dir will be checked, path including last "/".  
-publish_dir=$HOME/your/publish_dir/
+publish_dir=$HOME/workport/homesite/publish/
 
 # file of recording the modified time, no need to change
 ctf=$publish_dir.ctime.txt
@@ -45,15 +45,15 @@ tmpfile="/tmp/upssdef"$RANDOM
 magic_line="_UNIQUE__NAME___"
 
 # 2. Serve settings
-server=192.168.122.16
-user=my_user_name
-passwd=my_pass_word
-rdir=ftp_remote_dir_no_last_slash
+server=98.126.60.122
+user=lalawuer
+passwd=814a5b63c0fab
+rdir=web
 
 # 3. Backup
 # 
-store_dir=$HOME/path/to/store
-backup_dir=$HOME/dir/for/backup
+store_dir=$HOME
+backup_dir=$HOME/workport
 file_name="homesite"
 _backup()
 {
