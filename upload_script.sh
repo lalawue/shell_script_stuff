@@ -41,14 +41,14 @@ ctf=$publish_dir.ctime.txt
 # tmp file prefix
 tmpfile="/tmp/upssdef"$RANDOM
 
-# magic line
-magic_line="_UNIQUE__NAME___"
+# eof line
+eof_line="___EOF_"
 
 # 2. Serve settings
-server=98.126.60.122
-user=lalawuer
-passwd=814a5b63c0fab
-rdir=web
+server=192.168.10.12
+user=my_ftp_username
+passwd=my_ftp_password
+rdir=my_ftp_publish_dir
 
 # 3. Backup
 # 
@@ -69,18 +69,23 @@ _generate_and_run_script()
     echo "------ generate ftp script ------"
 
     echo "#!/bin/bash" > $tmpfile
-    echo "ftp -n << $magic_line" >> $tmpfile
+    echo "ftp -n << $eof_line" >> $tmpfile
     echo "open $server" >> $tmpfile
     echo "user $user $passwd" >> $tmpfile
 
-    for path in $(find . -type f -cnewer $ctf -print)
+    for path in $(find . -cnewer $ctf -print)
     do
         file=$(echo $path | cut -c3- )
-        echo "put $file $rdir/$file" >> $tmpfile
+        if [ -d $file ]; then
+            echo "mkdir $file" >> $tmpfile
+        else
+
+	        echo "put $file $rdir/$file" >> $tmpfile
+        fi
     done
 
     echo "bye" >> $tmpfile
-    echo "$magic_line" >> $tmpfile
+    echo "$eof_line" >> $tmpfile
     
     # run script
     echo "------ run script ------"
@@ -90,7 +95,7 @@ _generate_and_run_script()
 }
 
 # run
-generate_google_sitemap
+# generate_google_sitemap
 if [ -e $ctf ]; then
     cd $publish_dir
     _generate_and_run_script
