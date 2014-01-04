@@ -76,7 +76,7 @@ _generate_and_run_script()
     for path in $(find . -type f -cnewer $ctf -print)
     do
         file=$(echo $path | cut -c3- )
-	    echo "put $file $rdir/$file" >> $tmpfile
+        echo "put $file $rdir/$file" >> $tmpfile
     done
 
     echo "bye" >> $tmpfile
