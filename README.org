@@ -1,14 +1,15 @@
 
 * Generate Rss Feeds
 
-to generate rss feed in RSS 1.0 format
+generate rss feed in RSS 2.0 format
 
 
 * Upload Script
 
-upload your file to remote server in ftp protocol
+upload your created/modified folder/files under publish_dir to remote server via system's ftp cmd,
+only need bash, 'find' command, support MacOS/Linux, and may be Win.
 
 
 * Generate Google Sitemap
 
-generate google sitemap shell script
+generate google sitemap
