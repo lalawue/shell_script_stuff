@@ -1,3 +1,4 @@
+config file and some useful shell script
 
 * Generate Rss Feeds
 
