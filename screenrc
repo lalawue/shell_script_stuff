@@ -1,14 +1,13 @@
 # create by sucha, 2008/06/04
 
-# # define the escape
+# define the escape
 escape ^zz
 #defescape zz
 
-# define scroolback lines
-defscrollback 3000
+defscrollback 2048
 
 # open window in current dir
-bind ^c stuff "screen -X chdir \$PWD;screen^M"
+#bind ^c stuff "screen -X chdir \$PWD;screen^M"
 
 # the original one
 #caption always "%?%F%{-b 4w}%:%{-b bb}%? %H | %l | %m-%d %c |%?%F%{-b 4w}%?%L=%-Lw%45>%{-b w4}%n%f* %t%{-}%+Lw%-0<"
@@ -59,3 +58,12 @@ caption always "%?%F%{+b 50}%:%{+b rr}%?%H | %m/%d %c | %?%F%{+b 50}%?%L=%-Lw%45
 #    %+Lw     - window list from the next window on (-), show window flags (L)
 #    %-0<     - truncation/padding point.  Place this point zero spaces (0)
 #               from the right margin (-).
+#
+
+# path to win1
+chdir "$HOME/"
+screen -t win1
+# path to win2, new screen path default to /usr/local
+chdir "/usr/local/"
+screen -t win2
+screen -t win3
