@@ -1,3 +1,4 @@
+# by sucha in http://suchang.net
 alias ls='ls -G'
 export PATH=$PATH:~/bin
 PS1='\h:\W \u\$ '
