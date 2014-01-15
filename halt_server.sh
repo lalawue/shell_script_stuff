@@ -6,7 +6,7 @@
 
 # prompt for root@host_ip
 set serv_root_prompt "password"
-set serv_halt_cmd "shutdown -P now" # just power off, later we can wake on lan (WOL)
+set serv_halt_cmd "shutdown -P now"
 set serv_halt_expect "power"
 
 set timeout 10
