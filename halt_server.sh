@@ -5,7 +5,8 @@
 # Usage: halt_server host_ip
 
 # prompt for root@host_ip
-set serv_root_prompt "password"
+set serv_root_passwd_prompt "password"
+set serv_root_login_prompt "login"
 set serv_halt_cmd "shutdown -P now"
 set serv_halt_expect "power"
 
@@ -27,8 +28,9 @@ set pass $expect_out(1,string)
 
 # login server and run halt
 spawn ssh -2 root@$host
-expect $serv_root_prompt
+expect $serv_root_passwd_prompt
 send $pass\r
+expect $serv_root_login_prompt
 send $serv_halt_cmd\r
 expect $serv_halt_expect
 exit
