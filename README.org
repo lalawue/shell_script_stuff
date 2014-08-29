@@ -14,3 +14,8 @@ only need bash, 'find' command, support MacOS/Linux, and may be Win.
 * Generate Google Sitemap
 
 generate google sitemap
+
+
+* JNG/JPNG file generator
+
+JNG/JPNG is a self defined format, combined jpeg and png, better size with alpha channel support, need to decode jpeg & png before display, system will recognize it as jpeg. 
