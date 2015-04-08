@@ -1,11 +1,13 @@
 #alias ls='ls -G'
 export CLICOLOR=1
-export LSCOLORS=gxfxcxdxbxegedabagacad
+#export LSCOLORS=gxfxcxdxbxegedabagacad
 export MAGICK_HOME="$HOME/bin/ImageMagick-6.8.9"
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 export GOROOT=$HOME/repos/go
 export PATH=$PATH:$HOME/bin:$MAGICK_HOME/bin:$GOROOT/bin
-export PS1='\h:\W \u\$ '
+#export PS1='\h:\W \u\$ '
+export PS1='\033[01;30m\u@\h \033[01;00m\W$ '
+#export PS1='\u@\h \W\$ '
 #
 alias appBin="cd /Users/user/Library/Developer/Xcode/DerivedData/"
 alias appData="cd '/Users/user/Library/Application Support/iPhone Simulator/7.1/Applications/'"
